@@ -204,7 +204,9 @@
         };
           
         const fichasCollection = collection(db, "ficha");
-        onSnapshot(fichasCollection, renderFichas);
-      </script>
+        onSnapshot(fichasCollection, (querySnapshot) => {
+            renderFichas(querySnapshot);
+
+    </script>
 </body>
 </html>
