@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
-    <center><h1>Gestión de recepciones <br> Baby Lion</h1></center>
+    <center><h1>Gestión de recepciones Guarderia<br> Baby Lion</h1></center>
     <br>
     <form id="form-guard">
         <div class="row">
@@ -51,7 +51,7 @@
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Agregar ficha
                 </button>
-                
+
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -73,10 +73,10 @@
             </div>
         </div>
     </form>
-    
+    <hr>
     <div class="container mt-4">
         <h2>Lista de Fichas</h2>
-        <table class="table table-striped" id="fichas-table">
+        <table class="table table-striped table-bordered" id="fichas-table">
             <thead>
                 <tr>
                     <th>Cédula Representante</th>
@@ -89,7 +89,6 @@
                     <th>Nombres Niño/a</th>
                     <th>Fecha Nacimiento Niño/a</th>
                     <th>Informe Médico Niño/a</th>
-                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -101,7 +100,7 @@
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        import {getFirestore,collection,addDoc,onSnapshot,deleteDoc,doc} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
       
@@ -119,37 +118,24 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        let isUpdate = false;
-        let idToUpdate = null;
-
-        const productform = document.getElementById("form-guard");
-        productform.addEventListener("submit", async (e) => {
+        const productfrom = document.getElementById("form-guard");
+        productfrom.addEventListener("submit",async(e)=> {
             e.preventDefault();
-            const fichaData = {
-                cedulani: productform.cedulani.value,
-                cedulare: productform.cedulare.value,
-                celularre: productform.celularre.value,
-                fechains: productform.fechains.value,
-                fechani: productform.fechani.value,
-                horaent: productform.horaent.value,
-                horasal: productform.horasal.value,
-                informemed: productform.informemed.value,
-                nombreni: productform.nombreni.value,
-                nombrere: productform.nombrere.value
-            };
-
-            if (isUpdate && idToUpdate) {
-                await updateDoc(doc(db, "ficha", idToUpdate), fichaData);
-                isUpdate = false;
-                idToUpdate = null;
-            } else {
-                await addDoc(collection(db, "ficha"), fichaData);
-            }
-
-            productform.reset();
+            await addDoc(collection(db,"ficha"),{
+                cedulani: productfrom.cedulani.value,
+                cedulare: productfrom.cedulare.value,
+                celularre: productfrom.celularre.value,
+                fechains: productfrom.fechains.value,
+                fechani: productfrom.fechani.value,
+                horaent: productfrom.horaent.value,
+                horasal: productfrom.horasal.value,
+                informemed: productfrom.informemed.value,
+                nombreni: productfrom.nombreni.value,
+                nombrere: productfrom.nombrere.value
+            });
+            productfrom.reset();
         });
 
-        // Function to render fichas in the table
         const renderFichas = (querySnapshot) => {
             const fichasTableBody = document.querySelector('#fichas-table tbody');
             fichasTableBody.innerHTML = ""; // Clear the table body
@@ -168,18 +154,11 @@
                     <td>${ficha.fechani}</td>
                     <td>${ficha.informemed}</td>
                     <td>
-
                         <button class="btn btn-danger btn-sm delete-btn" data-id="${doc.id}">Eliminar</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-warning btn-sm edit-btn" data-id="${doc.id}">Actualizar</button>
-                        
                     </td>
                 `;
                 fichasTableBody.appendChild(tr);
             });
-
-            // Add event listeners to delete buttons
             const deleteButtons = document.querySelectorAll('.delete-btn');
             deleteButtons.forEach(button => {
                 button.addEventListener('click', async (e) => {
@@ -187,37 +166,10 @@
                     await deleteDoc(doc(db, "ficha", id));
                 });
             });
-
-            // Add event listeners to edit buttons
-            const editButtons = document.querySelectorAll('.edit-btn');
-            editButtons.forEach(button => {
-                button.addEventListener('click', async (e) => {
-                    const id = e.target.getAttribute('data-id');
-                    const fichaDoc = await doc(db, "ficha", id).get();
-                    const fichaData = fichaDoc.data();
-
-                    productform.cedulani.value = fichaData.cedulani;
-                    productform.cedulare.value = fichaData.cedulare;
-                    productform.celularre.value = fichaData.celularre;
-                    productform.fechains.value = fichaData.fechains;
-                    productform.fechani.value = fichaData.fechani;
-                    productform.horaent.value = fichaData.horaent;
-                    productform.horasal.value = fichaData.horasal;
-                    productform.informemed.value = fichaData.informemed;
-                    productform.nombreni.value = fichaData.nombreni;
-                    productform.nombrere.value = fichaData.nombrere;
-
-                    isUpdate = true;
-                    idToUpdate = id;
-                });
-            });
         };
-
-        // Listen for real-time updates from the Firestore
+          
         const fichasCollection = collection(db, "ficha");
-        onSnapshot(fichasCollection, (querySnapshot) => {
-            renderFichas(querySnapshot);
-        });
-    </script>
+        onSnapshot(fichasCollection, renderFichas);
+      </script>
 </body>
 </html>
