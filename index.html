@@ -157,15 +157,7 @@
                 fichasTableBody.appendChild(tr);
             });
         };
-          // Add event listeners to delete buttons
-          const deleteButtons = document.querySelectorAll('.delete-btn');
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', async (e) => {
-                    const id = e.target.getAttribute('data-id');
-                    await deleteDoc(doc(db, "ficha", id));
-                });
-            });
-        };
+          
         const fichasCollection = collection(db, "ficha");
         onSnapshot(fichasCollection, renderFichas);
       </script>
