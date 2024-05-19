@@ -19,7 +19,7 @@
         <br>
         <p>Celular Representante:</p>
         <br>
-        <input type="number" placeholder="Ingrese número telefonico del padre o de la madre" id="ceularre">
+        <input type="number" placeholder="Ingrese número telefonico del padre o de la madre" id="celularre">
         <br>
         <p>Fecha de Inscripción:</p>
         <br>
@@ -50,7 +50,6 @@
         <hr>
         <button type="submit">Registrar</button>
     </form>
-
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -60,14 +59,13 @@
       
         // Your web app's Firebase configuration
         const firebaseConfig = {
-          apiKey: "AIzaSyBw85ALQcBHwy8q6b57pL2ydKqXajnxPWo",
-          authDomain: "cine-latayork.firebaseapp.com",
-          projectId: "cine-latayork",
-          storageBucket: "cine-latayork.appspot.com",
-          messagingSenderId: "441523963760",
-          appId: "1:441523963760:web:922b444baf62168cf931b5"
+          apiKey: "AIzaSyDJNW_mRJP1_SKyMbyjgWB1fbe32zjwP4Q",
+          authDomain: "guarderia-9a1b7.firebaseapp.com",
+          projectId: "guarderia-9a1b7",
+          storageBucket: "guarderia-9a1b7.appspot.com",
+          messagingSenderId: "890407171645",
+          appId: "1:890407171645:web:b9176a4ef1ddf4bcd3dc54"
         };
-      
       
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
@@ -79,7 +77,7 @@
             await addDoc(collection(db,"ficha"),{
                 cedulani: productfrom.cedulani.value,
                 cedulare: productfrom.cedulare.value,
-                ceularre: productfrom.ceularre.value,
+                celularre: productfrom.celularre.value,
                 fechains: productfrom.fechains.value,
                 fechani: productfrom.fechani.value,
                 horaent: productfrom.horaent.value,
