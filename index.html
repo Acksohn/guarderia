@@ -7,48 +7,48 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
-<body>
+<body background-color="#0F1115">
     <center><h1>Gestión de recepciones Guarderia<br> Baby Lion</h1></center>
     <br>
     <form id="form-guard">
-        <div class="row">
+        <div class="row" >
             <div class="col">
-                <p>Cedula del Representante:</p>
+                <strong><p>Cedula del Representante:</p></strong>
                 <input type="number" placeholder="Ingrese cedula del padre o de la madre" id="cedulare" class="form-control">
                 <br>
-                <p>Nombres Representante:</p>
+                <strong><p>Nombres Representante:</p></strong>
                 <input type="text" placeholder="Ingrese nombres del padre o de la madre" id="nombrere" class="form-control">
                 <br>
-                <p>Celular Representante:</p>
+                <strong><p>Celular Representante:</p></strong>
                 <input type="number" placeholder="Ingrese número telefonico del padre o de la madre" id="celularre" class="form-control">
                 <br>
-                <p>Fecha de Inscripción:</p>
+                <strong><p>Fecha de Inscripción:</p></strong>
                 <input type="date" placeholder="Ingrese la fecha" id="fechains" class="form-control">
                 <br>
-                <p>Hora entrada:</p>
+                <strong><p>Hora entrada:</p></strong>
                 <input type="time" placeholder="Hora que deja al niño" id="horaent" class="form-control">
                 <br>
-                <p>Hora Salida:</p>
+                <strong><p>Hora Salida:</p></strong>
                 <input type="time" placeholder="Hora que recojen al niño" id="horasal" class="form-control">
                 <br>
                 
             </div>
             <div class="col">
-                <p>Cedula del Niño/a</p>
+                <strong><p>Cedula del Niño/a</p></strong>
                 <input type="number" placeholder="Ingrese cedula del niño/a" id="cedulani" class="form-control">
                 <br>
-                <p>Nombres Niño/a:</p>
+                <strong><p>Nombres Niño/a:</p></strong>
                 <input type="text" placeholder="Ingrese el nombre del niño/a" id="nombreni" class="form-control">
                 <br>
-                <p>Fecha nacimiento niño/a:</p>
+                <strong><p>Fecha nacimiento niño/a:</p></strong>
                 <input type="date" placeholder="Ingrese edad del niño" id="fechani" class="form-control">
                 <br>
-                <p>Informe medico niño/a:</p>
+                <strong><p>Informe medico niño/a:</p></strong>
                 <textarea placeholder="Ingrese si el niño es alergico o tiene alguna medicación" id="informemed" class="form-control"></textarea>
                 <hr>
                 
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Agregar ficha
                 </button>
 
@@ -97,7 +97,11 @@
             </tbody>
         </table>
     </div>
-
+    <style>
+        p{
+            color:white;
+        }
+    </style>
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -155,7 +159,7 @@
                     <td>${ficha.fechani}</td>
                     <td>${ficha.informemed}</td>
                     <td>
-                        <button class="btn btn-danger btn-sm delete-btn" data-id="${doc.id}">Eliminar</button>
+                        <button class="btn btn-outline-danger btn-sm delete-btn" data-id="${doc.id}">Eliminar</button>
                     </td>
                 `;
                 fichasTableBody.appendChild(tr);
