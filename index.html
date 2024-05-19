@@ -14,48 +14,62 @@
         <div class="row">
             <div class="col">
                 <p>Cedula del Representante:</p>
-                <br>
                 <input type="number" placeholder="Ingrese cedula del padre o de la madre" id="cedulare" class="form-control">
                 <br>
                 <p>Nombres Representante:</p>
-                <br>
                 <input type="text" placeholder="Ingrese nombres del padre o de la madre" id="nombrere" class="form-control">
                 <br>
                 <p>Celular Representante:</p>
-                <br>
                 <input type="number" placeholder="Ingrese número telefonico del padre o de la madre" id="celularre" class="form-control">
                 <br>
                 <p>Fecha de Inscripción:</p>
-                <br>
                 <input type="date" placeholder="Ingrese la fecha" id="fechains" class="form-control">
                 <br>
                 <p>Hora entrada:</p>
-                <br>
                 <input type="time" placeholder="Hora que deja al niño" id="horaent" class="form-control">
                 <br>
                 <p>Hora Salida:</p>
-                <br>
                 <input type="time" placeholder="Hora que recojen al niño" id="horasal" class="form-control">
                 <br>
                 
             </div>
             <div class="col">
                 <p>Cedula del Niño/a</p>
-                <br>
                 <input type="number" placeholder="Ingrese cedula del niño/a" id="cedulani" class="form-control">
-                <p>Nombres Niño/a:</p>
                 <br>
+                <p>Nombres Niño/a:</p>
                 <input type="text" placeholder="Ingrese el nombre del niño/a" id="nombreni" class="form-control">
                 <br>
                 <p>Fecha nacimiento niño/a:</p>
-                <br>
                 <input type="date" placeholder="Ingrese edad del niño" id="fechani" class="form-control">
                 <br>
                 <p>Informe medico niño/a:</p>
-                <br>
                 <textarea placeholder="Ingrese si el niño es alergico o tiene alguna medicación" id="informemed" class="form-control"></textarea>
                 <hr>
-                <button type="submit">Registrar</button>
+                
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Agregar ficha
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        ...
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Confirmar</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
