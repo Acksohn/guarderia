@@ -71,7 +71,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        const productfrom = document.getElementById(form-guard);
+        const productfrom = document.getElementById("form-guard");
         productfrom.addEventListener("submit",async(e)=> {
             e.preventDefault();
             await addDoc(collection(db,"ficha"),{
