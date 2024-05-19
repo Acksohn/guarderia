@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
-    <center><h1>Gestión de recepciones <br> Baby Lion</h1></center>
+    <center><h1>Gestión de recepciones Guarderia<br> Baby Lion</h1></center>
     <br>
     <form id="form-guard">
         <div class="row">
@@ -51,7 +51,7 @@
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Agregar ficha
                 </button>
-                
+                <button type="button" id="delete-btn">Eliminar</button>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -155,6 +155,15 @@
                     <td>${ficha.informemed}</td>
                 `;
                 fichasTableBody.appendChild(tr);
+            });
+        };
+          // Add event listeners to delete buttons
+          const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    const id = e.target.getAttribute('data-id');
+                    await deleteDoc(doc(db, "ficha", id));
+                });
             });
         };
         const fichasCollection = collection(db, "ficha");
