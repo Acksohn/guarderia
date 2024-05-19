@@ -51,7 +51,7 @@
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Agregar ficha
                 </button>
-                <button type="button" id="delete-btn">Eliminar</button>
+
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -153,8 +153,18 @@
                     <td>${ficha.nombreni}</td>
                     <td>${ficha.fechani}</td>
                     <td>${ficha.informemed}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm delete-btn" data-id="${doc.id}">Eliminar</button>
+                    </td>
                 `;
                 fichasTableBody.appendChild(tr);
+            });
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    const id = e.target.getAttribute('data-id');
+                    await deleteDoc(doc(db, "ficha", id));
+                });
             });
         };
           
