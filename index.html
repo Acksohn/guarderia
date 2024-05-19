@@ -191,24 +191,24 @@
         };
         const editarBtn = document.getElementById("btn-editar");
         editarBtn.addEventListener("click", async () => {
-            const codigo = document.getElementById("codigo").value;
-            const q = query(collection(db, "pacientes"), where("codigo", "==", codigo));
+            const codigo = document.getElementById("cedulare").value;
+            const q = query(collection(db, "ficha"), where("cedulare", "==", codigo));
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach(async (docSnap) => {
-                const docRef = doc(db, "pacientes", docSnap.id);
+                const docRef = doc(db, "ficha", docSnap.id);
                 await updateDoc(docRef, {
-                    codigo: document.getElementById("codigo").value,
-                    color: document.getElementById("color").value,
-                    edad: document.getElementById("edad").value,
-                    especie: document.getElementById("especie").value,
-                    fecha_nacimiento: document.getElementById("fecha_nacimiento").value,
-                    genero: document.getElementById("genero").value,
-                    nombre: document.getElementById("nombre").value,
-                    peso: document.getElementById("peso").value,
-                    propietario: document.getElementById("propietario").value,
-                    raza: document.getElementById("raza").value
+                    cedulani: document.getElementById("cedulani").value,
+                    cedulare: document.getElementById("cedulare").value,
+                    celularre: document.getElementById("celularre").value,
+                    fechains: document.getElementById("fechains").value,
+                    fechani: document.getElementById("fechani").value,
+                    horaent: document.getElementById("horaent").value,
+                    horasal: document.getElementById("horasal").value,
+                    informemed: document.getElementById("informemed").value,
+                    nombreni: document.getElementById("nombreni").value,
+                    nombrere: document.getElementById("nombrere").value
                 });
-                veterinaria.reset();
+                productfrom.reset();
             });
         });
           
