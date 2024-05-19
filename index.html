@@ -177,6 +177,28 @@
                     await deleteDoc(doc(db, "ficha", id));
                 });
             });
+            const editButtons = document.querySelectorAll('.edit-btn');
+            editButtons.forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    const id = e.target.getAttribute('data-id');
+                    const fichaDoc = await doc(db, "ficha", id).get();
+                    const fichaData = fichaDoc.data();
+
+                    productform.cedulani.value = fichaData.cedulani;
+                    productform.cedulare.value = fichaData.cedulare;
+                    productform.celularre.value = fichaData.celularre;
+                    productform.fechains.value = fichaData.fechains;
+                    productform.fechani.value = fichaData.fechani;
+                    productform.horaent.value = fichaData.horaent;
+                    productform.horasal.value = fichaData.horasal;
+                    productform.informemed.value = fichaData.informemed;
+                    productform.nombreni.value = fichaData.nombreni;
+                    productform.nombrere.value = fichaData.nombrere;
+
+                    isUpdate = true;
+                    idToUpdate = id;
+                });
+            });
         };
           
         const fichasCollection = collection(db, "ficha");
