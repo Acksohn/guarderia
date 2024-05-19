@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardería</title>
+</head>
+<body>
+    <center><h1>Gestión de recepciones <br> Baby Lion</h1></center>
+    <br>
+    <form id="form-guard">
+        <p>Cedula del Representante:</p>
+        <br>
+        <input type="number" placeholder="Ingrese cedula del padre o de la madre" id="cedulare">
+        <br>
+        <p>Nombres Representante:</p>
+        <br>
+        <input type="text" placeholder="Ingrese nombres del padre o de la madre" id="nombrere">
+        <br>
+        <p>Celular Representante:</p>
+        <br>
+        <input type="number" placeholder="Ingrese número telefonico del padre o de la madre" id="ceularre">
+        <br>
+        <p>Fecha de Inscripción:</p>
+        <br>
+        <input type="text" placeholder="Ingrese la fecha" id="fechains">
+        <br>
+        <p>Hora entrada:</p>
+        <br>
+        <input type="text" placeholder="Hora que deja al niño" id="horaent">
+        <br>
+        <p>Hora Salida:</p>
+        <br>
+        <input type="text" placeholder="Hora que recojen al niño" id="horasal">
+        <br>
+        <p>Cedula del Niño/a</p>
+        <br>
+        <input type="number" placeholder="Ingrese cedula del niño/a" id="cedulani">
+        <p>Nombres Niño/a:</p>
+        <br>
+        <input type="text" placeholder="Ingrese el nombre del niño/a" id="nombreni">
+        <br>
+        <p>Fecha nacimiento niño/a:</p>
+        <br>
+        <input type="text" placeholder="Ingrese edad del niño" id="fechani">
+        <br>
+        <p>Informe medico niño/a:</p>
+        <br>
+        <input type="text" placeholder="Ingrese si el niño es alergico o tiene alguna medicación" id="informemed">
+        <hr>
+        <button type="submit">Registrar</button>
+    </form>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import {getFirestore,collection,addDoc,onSnapshot,deleteDoc,doc} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDJNW_mRJP1_SKyMbyjgWB1fbe32zjwP4Q",
+          authDomain: "guarderia-9a1b7.firebaseapp.com",
+          projectId: "guarderia-9a1b7",
+          storageBucket: "guarderia-9a1b7.appspot.com",
+          messagingSenderId: "890407171645",
+          appId: "1:890407171645:web:b52314d8df097dd0d3dc54"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const productfrom = document.getElementById(form-guard);
+        productfrom.addEventListener("submit",async(e)=> {
+            e.preventDefault();
+            await addDoc(collection(db,"ficha"),{
+                cedulani: productfrom.cedulani.value,
+                cedulare: productfrom.cedulare.value,
+                ceularre: productfrom.ceularre.value,
+                fechains: productfrom.fechains.value,
+                fechani: productfrom.fechani.value,
+                horaent: productfrom.horaent.value,
+                horasal: productfrom.horasal.value,
+                informemed: productfrom.informemed.value,
+                nombreni: productfrom.nombreni.value,
+                nombrere: productfrom.nombrere.value
+            });
+            productfrom.reset();
+        });
+      </script>
+</body>
+</html>
