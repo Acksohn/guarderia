@@ -118,6 +118,9 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        let isUpdate = false;
+        let idToUpdate = null;
+
         const productfrom = document.getElementById("form-guard");
         productfrom.addEventListener("submit",async(e)=> {
             e.preventDefault();
@@ -133,6 +136,13 @@
                 nombreni: productfrom.nombreni.value,
                 nombrere: productfrom.nombrere.value
             });
+            if (isUpdate && idToUpdate) {
+                await updateDoc(doc(db, "ficha", idToUpdate), fichaData);
+                isUpdate = false;
+                idToUpdate = null;
+            } else {
+                await addDoc(collection(db, "ficha"), fichaData);
+            }
             productfrom.reset();
         });
 
@@ -155,6 +165,7 @@
                     <td>${ficha.informemed}</td>
                     <td>
                         <button class="btn btn-danger btn-sm delete-btn" data-id="${doc.id}">Eliminar</button>
+                        <button class="btn btn-primary btn-sm edit-btn" data-id="${doc.id}">Actualizar</button>
                     </td>
                 `;
                 fichasTableBody.appendChild(tr);
