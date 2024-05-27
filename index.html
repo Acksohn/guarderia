@@ -91,7 +91,7 @@
         var clave = document.getElementById('input_clave').value;
         signInWithEmailAndPassword(auth,email,clave).then((cred) =>{
             alert("Usuario Logueado");
-            window.location.href = "conductores.html";
+            window.location.href = "guarderia.html";
         }).catch(error =>{
             // Handle Errors here.
             const errorCode = error.code;
