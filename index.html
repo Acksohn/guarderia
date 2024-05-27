@@ -87,8 +87,8 @@
     const login = document.getElementById('btn_iniciar');
     login.addEventListener('click',(e) => {
         e.preventDefault();
-        var email = document.getElementById('input_email').value;
-        var clave = document.getElementById('input_clave').value;
+        var email = document.getElementById('logemailInput').value;
+        var clave = document.getElementById('ilogpasswordInput').value;
         signInWithEmailAndPassword(auth,email,clave).then((cred) =>{
             alert("Usuario Logueado");
             window.location.href = "guarderia.html";
