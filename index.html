@@ -12,17 +12,17 @@
         <h2 id="titulo">BIENVENIDO</h2>
         <form action="#">
             <div class="input-field">
-                <input type="email" id="email" placeholder="Usuario" required>
+                <input type="email" id="logemailInput" placeholder="Usuario" required>
                 <i class="bx bxs-user"></i>
             </div>
             <div class="input-field">
-                <input type="password" id="password" placeholder="Contraseña" required>
+                <input type="password" id="logpasswordInput" placeholder="Contraseña" required>
                 <i class="bx bxs-lock-alt"></i>
             </div>
             <a href="#" class="forgot">
                 <p>Olvidaste tu contraseña?</p>
             </a>
-            <button type="submit" class="login"><img src="entrar.png" height="15px" width="15px"> &nbsp; Ingresar</button>
+            <button type="submit" class="login" id="btn_iniciar"><img src="entrar.png" height="15px" width="15px"> &nbsp; Ingresar</button>
             <hr>
             <button type="button" id="inicioGoogle" > <img src="google.png" height="15px" width="15px">  &nbsp; Iniciar sesión con Google</button>
             <p>No tienes una cuenta aun? <a href="https://accounts.google.com/lifecycle/steps/signup/name?continue=https://www.google.com.ec/&ddm=0&dsh=S67524905:1716680473114318&ec=GAZAmgQ&flowEntry=SignUp&flowName=GlifWebSignIn&hl=es-419&ifkv=AaSxoQwBrIymy9LR2i17yHekmRhqACPhuqlmssFm-IbGaPEi4cPiOhkEUrNbUoB-cQNHHBuw4ZvX&TL=ALv_Gf9lgidbbDfNzFCpih9bPDQdGTCba7p4x7SF4apGl76xJO2hDnjoXmGNXAOF" class="sign-up">Registrate</a></p>
@@ -82,6 +82,40 @@
                 }
             }
         });
+
+        //LOGUEO CON CORREO
+    const login = document.getElementById('btn_iniciar');
+    login.addEventListener('click',(e) => {
+        e.preventDefault();
+        var email = document.getElementById('input_email').value;
+        var clave = document.getElementById('input_clave').value;
+        signInWithEmailAndPassword(auth,email,clave).then((cred) =>{
+            alert("Usuario Logueado");
+            window.location.href = "conductores.html";
+        }).catch(error =>{
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            if(errorCode == 'auth/invalid-email')
+                alert('El correo no es válido');
+            else if(errorCode == 'auth/user-disabled')
+                alert('El usuario ha sido deshabilitado');
+            else if(errorCode == 'auth/wrong-password')
+                alert('El suaurio o Contraseña son incorrectos');
+            else if(errorCode == 'auth/user-not-found')
+                alert('El usuario no existe');
+            else if (errorCode === 'auth/invalid-credential')
+                alert('Credenciales no válidas. Por favor, revisa tu configuración de Firebase.');
+            else if(errorCode == 'auth/missing-password')
+                alert('Ingrese una contraseña');
+            else{
+                alert('Error desconocido: ' + errorMessage);
+            }      
+        })
+    })
+
+       
+
     </script>
 </body>
 </html>
